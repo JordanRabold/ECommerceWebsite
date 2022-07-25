@@ -1,18 +1,26 @@
 html {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    background-image: url("https://cattime.com/assets/uploads/gallery/national-camera-day-cats/cat_photography_tips_4-e1561166478165.jpg");
+    background-size: 100%;
+    min-height: 300px;
+}
+
+.table{
+    font-weight: bold;
+    background-color:aliceblue;
+    opacity: .7;
 }
