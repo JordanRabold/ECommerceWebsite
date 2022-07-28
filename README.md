@@ -4,7 +4,7 @@ In this website you can create a customer account, select products and put them 
 view your shopping cart, and purchase items.
 
 # Home Page
-![Cat-Home]()
+![Cat-camera-gear-home-page](https://user-images.githubusercontent.com/97548765/181602838-819dc147-dbbb-4942-81b7-baff1a26e820.PNG)
 
 # Features 
 - Home page where you can read about the website 
