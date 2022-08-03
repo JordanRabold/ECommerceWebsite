@@ -1,3 +1,5 @@
+[![GitHub issues](https://img.shields.io/github/issues/JordanRabold/ECommerceWebsite)](https://github.com/JordanRabold/ECommerceWebsite/issues) [![GitHub forks](https://img.shields.io/github/forks/JordanRabold/ECommerceWebsite)](https://github.com/JordanRabold/ECommerceWebsite/network) [![GitHub stars](https://img.shields.io/github/stars/JordanRabold/ECommerceWebsite)](https://github.com/JordanRabold/ECommerceWebsite/stargazers) [![GitHub license](https://img.shields.io/github/license/JordanRabold/ECommerceWebsite)](https://github.com/JordanRabold/ECommerceWebsite) 
+
 # Cat Camera Gear eCommerce Website
 Welcome to Cat Camera Gear, this website is built using C# with ASP.NET and .NET 6 SDK.
 In this website you can create a customer account, select products and put them in a shopping cart,
