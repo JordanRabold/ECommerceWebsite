@@ -22,6 +22,7 @@ namespace ECommerceWebsite.Models
         /// <summary>
         /// The sale price of the product
         /// </summary>
+        [Required]
         [Range(0, 10000)]
         public double Price { get; set; }
 
