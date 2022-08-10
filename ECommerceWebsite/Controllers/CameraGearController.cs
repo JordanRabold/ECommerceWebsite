@@ -20,17 +20,16 @@ namespace ECommerceWebsite.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CameraGear camGear)
+        public async Task<IActionResult> Create(CameraGear camGear)
         {
             if (ModelState.IsValid)
             {
                 // Add to DB
                 _context.cameraGears.Add(camGear); // prepares insert
-                _context.SaveChanges(); // Executes pending insert
+                await _context.SaveChangesAsync(); // Executes pending insert
 
                 // Show success message on page
                 ViewData["Message"] = $"{camGear.Title} was added successfully!";
-
                 return View();
             }
 
