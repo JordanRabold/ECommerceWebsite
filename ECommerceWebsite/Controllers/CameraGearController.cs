@@ -1,6 +1,7 @@
 ﻿using ECommerceWebsite.Data;
 using ECommerceWebsite.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceWebsite.Controllers
 { 
@@ -13,6 +14,7 @@ namespace ECommerceWebsite.Controllers
             _context = context;
         }
 
+        // CREATE
         [HttpGet]
         public IActionResult Create()
         {
@@ -32,6 +34,17 @@ namespace ECommerceWebsite.Controllers
                 ViewData["Message"] = $"{camGear.Title} was added successfully!";
                 return View();
             }
+
+            return View(camGear);
+        }
+
+        //RETRIEVE
+        public async Task<IActionResult> Index()
+        {
+            // Get all camera gear from database
+            List<CameraGear> camGear = await _context.cameraGears.ToListAsync();
+
+            // show on webpage
 
             return View(camGear);
         }
