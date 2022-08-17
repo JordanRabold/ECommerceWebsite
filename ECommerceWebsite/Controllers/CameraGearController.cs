@@ -38,7 +38,7 @@ namespace ECommerceWebsite.Controllers
             return View(camGear);
         }
 
-        //RETRIEVE
+        // RETRIEVE
         public async Task<IActionResult> Index()
         {
             // Get all camera gear from database
@@ -47,6 +47,17 @@ namespace ECommerceWebsite.Controllers
             // show on webpage
 
             return View(camGear);
+        }
+
+        // UPDATE
+        public async Task<IActionResult> Edit(int id)
+        {
+            CameraGear gearToEdit = await _context.cameraGears.FindAsync(id);
+            if(gearToEdit == null)
+            {
+                return NotFound();
+            }
+            return View(gearToEdit);
         }
     }
 }
