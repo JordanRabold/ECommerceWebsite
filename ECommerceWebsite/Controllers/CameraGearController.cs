@@ -49,7 +49,7 @@ namespace ECommerceWebsite.Controllers
             return View(camGear);
         }
 
-        // UPDATE
+        // EDIT
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -61,7 +61,7 @@ namespace ECommerceWebsite.Controllers
             return View(gearToEdit);
         }
 
-        // DELETE
+        // UPDATE
         [HttpPost]
         public async Task<IActionResult> Edit(CameraGear gearModel)
         {
@@ -69,11 +69,11 @@ namespace ECommerceWebsite.Controllers
             {
                 _context.cameraGears.Update(gearModel);
                 await _context.SaveChangesAsync();
-                
+
+                TempData["Message"] = $"{gearModel.Title} was updated successfully!";
                 return RedirectToAction("Index");
             }
              return View(gearModel);
-            
         }
     }
 }
