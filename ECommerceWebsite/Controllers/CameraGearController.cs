@@ -50,6 +50,7 @@ namespace ECommerceWebsite.Controllers
         }
 
         // UPDATE
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             CameraGear gearToEdit = await _context.cameraGears.FindAsync(id);
@@ -58,6 +59,21 @@ namespace ECommerceWebsite.Controllers
                 return NotFound();
             }
             return View(gearToEdit);
+        }
+
+        // DELETE
+        [HttpPost]
+        public async Task<IActionResult> Edit(CameraGear gearModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.cameraGears.Update(gearModel);
+                await _context.SaveChangesAsync();
+                
+                return RedirectToAction("Index");
+            }
+             return View(gearModel);
+            
         }
     }
 }
