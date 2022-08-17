@@ -105,5 +105,16 @@ namespace ECommerceWebsite.Controllers
             TempData["Message"] = "This gear was already deleted";
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            CameraGear gearDetails = await _context.cameraGears.FindAsync(id);
+            if(gearDetails == null)
+            {
+                return NotFound();
+            }
+
+            return View(gearDetails);
+        }
     }
 }
