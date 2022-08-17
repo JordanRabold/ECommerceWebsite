@@ -42,7 +42,7 @@ namespace ECommerceWebsite.Controllers
         public async Task<IActionResult> Index()
         {
             // Get all camera gear from database
-            List<CameraGear> camGear = await _context.cameraGears.ToListAsync();
+            List<CameraGear> camGear = await _context.cameraGears.ToListAsync(); 
 
             // show on webpage
 
@@ -53,8 +53,8 @@ namespace ECommerceWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            CameraGear gearToEdit = await _context.cameraGears.FindAsync(id);
-            if(gearToEdit == null)
+            CameraGear gearToEdit = await _context.cameraGears.FindAsync(id); // find gear by id
+            if (gearToEdit == null)
             {
                 return NotFound();
             }
@@ -74,6 +74,36 @@ namespace ECommerceWebsite.Controllers
                 return RedirectToAction("Index");
             }
              return View(gearModel);
+        }
+
+        // DELETE
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            CameraGear? gearToDelete = await _context.cameraGears.FindAsync(id); // find gear by id
+
+            if (gearToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return View(gearToDelete);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            CameraGear gearToDelete = await _context.cameraGears.FindAsync(id); // find gear by id
+            if(gearToDelete != null)
+            {
+                _context.cameraGears.Remove(gearToDelete);
+                await _context.SaveChangesAsync();
+                TempData["Message"] = gearToDelete.Title + " was deleted successfully";
+                return RedirectToAction("Index");
+            }
+
+            TempData["Message"] = "This gear was already deleted";
+            return RedirectToAction("Index");
         }
     }
 }
