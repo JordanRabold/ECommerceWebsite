@@ -11,5 +11,7 @@ namespace ECommerceWebsite.Data
         }
 
         public DbSet<CameraGear> cameraGears { get; set; }
+
+        public DbSet<Member> members { get; set; }
     }
 }
