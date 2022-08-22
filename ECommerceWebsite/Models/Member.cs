@@ -31,11 +31,13 @@ namespace ECommerceWebsite.Models
 
         [Required]
         [StringLength(75, MinimumLength = 10)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
         [Compare(nameof(Password))]
         [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
     }
