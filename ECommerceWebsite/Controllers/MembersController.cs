@@ -34,6 +34,8 @@ namespace ECommerceWebsite.Controllers
                 _context.members.Add(newMember); // add to db
                 await _context.SaveChangesAsync(); // save changes
 
+                LogUserIn(newMember.Email);
+
                 // redirect to homepage
                 return RedirectToAction("Index", "Home");
             }
@@ -58,7 +60,7 @@ namespace ECommerceWebsite.Controllers
                                      select member).SingleOrDefault();
                 if(m != null)
                 {
-                    this.HttpContext.Session.SetString("Email", loginModel.Email); // set the session
+                    LogUserIn(loginModel.Email); // set the session
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -66,6 +68,17 @@ namespace ECommerceWebsite.Controllers
             }
             // Return page is no record found or moedl state is invalid
             return View(loginModel);
+        }
+
+        private void LogUserIn(string email)
+        {
+            HttpContext.Session.SetString("Email", email);
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
