@@ -39,13 +39,21 @@ namespace ECommerceWebsite.Controllers
         }
 
         // RETRIEVE
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
+            const int NumCameraGearToDisplayPerPage = 3; // how many pieces of gear to display per page
+            const int PageOffSet = 1; // Need page offset to use current page and figure out, num gear to display
+
+            int currentPage = id ?? 1; // Set currentPage to id if it has a value, otherwise use 1
+
             // Get all camera gear from database
-            List<CameraGear> camGear = await _context.cameraGears.ToListAsync(); 
+            List<CameraGear> camGear = await (from gear in _context.cameraGears
+                                              select gear)
+                                              .Skip(NumCameraGearToDisplayPerPage * (currentPage - PageOffSet))
+                                              .Take(NumCameraGearToDisplayPerPage)
+                                              .ToListAsync(); 
 
             // show on webpage
-
             return View(camGear);
         }
 
