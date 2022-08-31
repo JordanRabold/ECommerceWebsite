@@ -46,15 +46,21 @@ namespace ECommerceWebsite.Controllers
 
             int currentPage = id ?? 1; // Set currentPage to id if it has a value, otherwise use 1
 
+            int totalNumberOfProducts = await _context.cameraGears.CountAsync(); // returns all the gear in the database
+            double maxNumPages = Math.Ceiling((double)totalNumberOfProducts / NumCameraGearToDisplayPerPage);
+            int lastPage = Convert.ToInt32(maxNumPages); // rounding pages up to the next whole page number
+
             // Get all camera gear from database
-            List<CameraGear> camGear = await (from gear in _context.cameraGears
-                                              select gear)
+            List < CameraGear > camGear = await (from gear in _context.cameraGears
+                                                 select gear)
                                               .Skip(NumCameraGearToDisplayPerPage * (currentPage - PageOffSet))
                                               .Take(NumCameraGearToDisplayPerPage)
-                                              .ToListAsync(); 
+                                              .ToListAsync();
+
+            CameraGearCatalogViewModel catalogModel = new(camGear, lastPage, currentPage);
 
             // show on webpage
-            return View(camGear);
+            return View(catalogModel);
         }
 
         // EDIT
