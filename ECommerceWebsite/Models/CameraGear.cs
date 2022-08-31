@@ -28,4 +28,18 @@ namespace ECommerceWebsite.Models
 
         // Todo: Add rating
     }
+
+    /// <summary>
+    /// A single piece of gear that has been added to the users
+    /// shopping cart cookie
+    /// </summary>
+    public class CartGearViewModel
+    {
+        public int CartGearId { get; set; }
+
+        public string Title { get; set; }
+
+        public double Price { get; set; }
+    }
+
 }
